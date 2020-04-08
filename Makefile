@@ -4,9 +4,9 @@ install:
 	@# Run install script
 	./setup/install.bash
 
-	@echo "# sprofs installation complete!"
+	@echo "# profs installation complete!"
 	exit 0
 
 uninstall:
-	@echo "# Uninstalling sprofs..."
-	rm -rf "$(HOME)/.sprofs"
+	@echo "# Uninstalling profs..."
+	rm -rf "$(HOME)/.profs"
