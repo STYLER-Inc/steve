@@ -1,1 +1,1 @@
-# profiles-for-skaffold
+# profiles-for-skaffold (profs)

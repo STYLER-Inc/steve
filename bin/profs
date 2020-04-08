@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PROFS_BIN_DIR=$(cd $(dirname $0);pwd)
+
+${PROFS_BIN_DIR}/../venv/bin/python3 ${PROFS_BIN_DIR}/../src/profs.py
