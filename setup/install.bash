@@ -8,4 +8,7 @@ cp -r setup ${HOME}/.sprofs
 cp requirements.txt ${HOME}/.sprofs
 
 cd ${HOME}/.sprofs
-./setup/add_profile.bash
+mv setup/add_profile.bash .
+./add_profile.bash
+
+rm -rf ${HOME}/.sprofs/setup
