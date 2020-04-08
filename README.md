@@ -1,5 +1,5 @@
 # profiles-for-skaffold (profs)
 ## Installation
 ```bash
-(git clone https://github.com/STYLER-Inc/profiles-for-skaffold.git $HOME/.sprofs/ && bash -c "$HOME/.sprofs/setup.bash")
+(cd /tmp && ([[ -d sprofs ]] || git clone --depth 1 --config core.autocrlf=false https://github.com/STYLER-Inc/profiles-for-skaffold.git) && cd sprofs && make install) && source ~/.profile
 ```
