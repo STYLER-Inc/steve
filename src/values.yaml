@@ -1,7 +1,0 @@
-general:
-  repo: asia.gcr.io/test-project
-projects:
-  test:
-    name: test-service
-    database:
-      ip: 1.2.3.4

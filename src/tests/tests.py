@@ -1,8 +1,7 @@
 import pytest
 
 from steve import load_yaml_file, \
-        load_templates, \
-        get_template_env
+        load_template
 
 
 @pytest.fixture
@@ -16,10 +15,7 @@ def values():
 def template():
     """ Gets the template object for the test template.
     """
-    template_dirs = ['tests/data']
-    fs_loader = load_templates(template_dirs)
-    template_env = get_template_env(fs_loader)
-    return template_env.get_template('template.yaml')
+    return load_template('tests/data/template.yaml')
 
 
 class TestRenderTemplates:

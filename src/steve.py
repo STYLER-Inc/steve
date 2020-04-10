@@ -3,16 +3,17 @@
    Styler Template Environment Variable Extractor (Steve)
 """
 
+import fire
+
+from jinja2 import Environment, FileSystemLoader, Template
 from yaml import load, dump
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
     from yaml import Loader, Dumper
 
-from jinja2 import Environment, FileSystemLoader, Template
 
-
-def load_templates(paths: list) -> FileSystemLoader:
+def load_jija_template_from_filesystem(paths: list) -> FileSystemLoader:
     """ Loads a template.
 
     Arguments:
@@ -52,25 +53,62 @@ def load_yaml_file(path: str) -> dict:
     return load(stream, Loader=Loader)
 
 
-def render_templates(template_dirs: list, values_file_path: str) -> str:
-    """ Renders a single, or multiple templates.
+def split_file_path(full_file_path: str, dir_separator: str = '/') -> list:
+    """ Splits the filepath at the last `dir_separator` to extract the
+    filepath and the filename.
+
+    Example:
+        Input:  '/path/to/file.ext'
+        Output: ['/path/to/', 'file.ext']
 
     Arguments:
-        template_dirs: Places in which to look for templates.
-        values_file_path: YAML file to use as a source for values.
+        full_file_path: A full file path.
+        dir_separator (optional): Directory separator.
 
     Returns:
-        Rendered template(s).
-    """
-    values = load_yaml_file(values_file_path)
+        List consisting of filepath and filename.
 
-    fs_loader = load_templates(template_dirs)
+    """
+    return full_file_path.rsplit(f'{dir_separator}', 1)
+
+
+def load_template(template_file: str) -> Template:
+    """ Loads a single template from the given file path.
+
+    Arguments:
+        template_file: Full or relative path to template file.
+
+    Returns:
+        Template object.
+
+    """
+    split_path = split_file_path(template_file)
+    template_path, template_filename = [split_path[i] for i in (0, 1)]
+    fs_loader = load_jija_template_from_filesystem(template_path)
     template_env = get_template_env(fs_loader)
-    template = template_env.get_template('skaffold.yaml')
+    return template_env.get_template(template_filename)
+
+
+def render_single_template(template_file: str,
+                           values_file: str) -> str:
+    """ Renders a single template file with values extracted
+    from a single values file.
+
+    Arguments:
+        template_file: Template file full/relative path.
+        values_file: Values file full/relative path.
+
+    Returns:
+        Output of rendered template.
+
+    """
+    # Load
+    values = load_yaml_file(values_file)
+    template = load_template(template_file)
+
+    # Render
     return template.render(values)
 
 
 if __name__ == '__main__':
-    render_results = render_templates(
-        template_dirs=['src/'], values_file_path='src/values.yaml')
-    print(render_results)
+    fire.Fire(render_single_template)
