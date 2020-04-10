@@ -48,7 +48,7 @@ def load_yaml_file(path: str) -> dict:
         A dictionary of the YAML file contents.
 
     """
-    stream = open('src/values.yaml', 'r')
+    stream = open(path, 'r')
     return load(stream, Loader=Loader)
 
 
@@ -71,5 +71,6 @@ def render_templates(template_dirs: list, values_file_path: str) -> str:
 
 
 if __name__ == '__main__':
-    render_results = render_templates(template_dirs=['src/'], values_file_path='src/values.yaml')
+    render_results = render_templates(
+        template_dirs=['src/'], values_file_path='src/values.yaml')
     print(render_results)
