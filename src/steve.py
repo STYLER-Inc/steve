@@ -3,7 +3,11 @@
    Styler Template Environment Variable Extractor (Steve)
 """
 
-import yaml
+from yaml import load, dump
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
 
 from jinja2 import Environment, FileSystemLoader, Template
 
@@ -45,7 +49,7 @@ def load_yaml_file(path: str) -> dict:
 
     """
     stream = open('src/values.yaml', 'r')
-    return yaml.load(stream)
+    return load(stream, Loader=Loader)
 
 
 def render_templates(template_dirs: list, values_file_path: str) -> str:
