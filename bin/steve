@@ -2,4 +2,4 @@
 
 PROFS_BIN_DIR=$(cd $(dirname $0);pwd)
 
-${PROFS_BIN_DIR}/../venv/bin/python3 ${PROFS_BIN_DIR}/../src/steve.py
+${PROFS_BIN_DIR}/../venv/bin/python3 ${PROFS_BIN_DIR}/../src/steve.py $@
