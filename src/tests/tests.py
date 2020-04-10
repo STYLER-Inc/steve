@@ -1,7 +1,7 @@
 import pytest
 
-from steve import load_yaml_file, \
-        load_template
+from yaml_loader import load_yaml_file
+from template_loader import load_template
 
 
 @pytest.fixture
