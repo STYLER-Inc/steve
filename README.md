@@ -23,6 +23,13 @@ make install && source ~/.profile
 
 ## Usage
 Run `steve` to see the usage. You can try it out with the test data like this:
+
+Usage:
+```bash
+steve --help
+```
+
+Example:
 ```bash
 steve ~/.steve/src/tests/data/template.yaml ~/.steve/src/tests/data/values.yaml
 ```
