@@ -4,9 +4,9 @@ install:
 	@# Run install script
 	./setup/install.bash
 
-	@echo "# profs installation complete!"
+	@echo "# steve installation complete!"
 	exit 0
 
 uninstall:
-	@echo "# Uninstalling profs..."
-	rm -rf "$(HOME)/.profs"
+	@echo "# Uninstalling steve..."
+	rm -rf "$(HOME)/.steve"

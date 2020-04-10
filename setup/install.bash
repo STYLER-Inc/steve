@@ -1,14 +1,15 @@
 #!/bin/bash
-rm -rf ${HOME}/.profs
-mkdir ${HOME}/.profs
+TOOL_NAME=steve
+rm -rf ${HOME}/.${TOOL_NAME}
+mkdir ${HOME}/.${TOOL_NAME}
 
-cp -r src ${HOME}/.profs
-cp -r bin ${HOME}/.profs
-cp -r setup ${HOME}/.profs
-cp requirements.txt ${HOME}/.profs
+cp -r src ${HOME}/.${TOOL_NAME}
+cp -r bin ${HOME}/.${TOOL_NAME}
+cp -r setup ${HOME}/.${TOOL_NAME}
+cp requirements.txt ${HOME}/.${TOOL_NAME}
 
-cd ${HOME}/.profs
+cd ${HOME}/.${TOOL_NAME}
 mv setup/add_profile.bash .
 ./add_profile.bash
 
-rm -rf ${HOME}/.profs/setup
+rm -rf ${HOME}/.${TOOL_NAME}/setup
