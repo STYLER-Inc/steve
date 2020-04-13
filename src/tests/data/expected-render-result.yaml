@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+
+deploy:
+    releases:
+    - name: test-service
+      chartPath: ./helm-charts
+      namespace: test-service
+      valuesFiles:
+        - ./helm-charts/values.yaml
+      setValueTemplates:
+        app.env: development
+        repo: asia.gcr.io/test-project
+        database.ip: 1.2.3.4

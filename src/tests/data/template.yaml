@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+
+deploy:
+    releases:
+    - name: {{ projects.test.name }}
+      chartPath: ./helm-charts
+      namespace: {{ projects.test.name }}
+      valuesFiles:
+        - ./helm-charts/values.yaml
+      setValueTemplates:
+        app.env: development
+        repo: {{ general.repo }}
+        database.ip: {{ projects.test.database.ip }}
