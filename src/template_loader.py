@@ -51,6 +51,8 @@ def split_file_path(full_file_path: str, dir_separator: str = '/') -> list:
         List consisting of filepath and filename.
 
     """
+    if dir_separator not in full_file_path:
+        return ['.', full_file_path]
     return full_file_path.rsplit(f'{dir_separator}', 1)
 
 
